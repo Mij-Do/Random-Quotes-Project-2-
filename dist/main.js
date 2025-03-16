@@ -12,12 +12,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 let getQuoteBtn = document.getElementById('btn');
 let quotes = document.getElementById('quotes');
 let randomQuotes;
+// check if the localstotage has Item "Quotes"
 if (localStorage.getItem('Quotes')) {
     randomQuotes = JSON.parse(localStorage.Quotes);
 }
 else {
     randomQuotes = [];
 }
+;
+// get the Quotes from api
 function getQuotes(api) {
     return __awaiter(this, void 0, void 0, function* () {
         let data = yield fetch(api)
@@ -27,6 +30,7 @@ function getQuotes(api) {
         localStorage.setItem('Quotes', JSON.stringify(data));
     });
 }
+// event to get and show quotes
 getQuoteBtn === null || getQuoteBtn === void 0 ? void 0 : getQuoteBtn.addEventListener('click', () => {
     getQuotes('https://api.quotable.io/quotes/random');
     showQuotes();
@@ -38,3 +42,4 @@ function showQuotes() {
         <article>(${randomQuotes[0].author})</article>
     `;
 }
+;
